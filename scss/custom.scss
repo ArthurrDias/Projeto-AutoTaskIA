@@ -1,0 +1,217 @@
+// Variáveis 
+$primary: #111;
+$secondary: #3a029b;
+$font-family-sans-serif: 'Sora', sans-serif;
+$body-bg: #2a2a2a;
+$body-color: #ffffff;
+$radius-padrao: 20px;
+
+// Mixins - Funções reutilizáveis
+@mixin flex-center($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+}
+
+// Placeholders - Para extender estilos
+%container-estilizado {
+    background-color: $primary;
+    color: white;
+    border-radius: $radius-padrao;
+    max-width: 1200px;
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+// Navbar
+.navbar {
+    padding: 1rem 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .3);
+    background-color: $secondary !important;
+    color: white !important;
+    font-family: 'Poppins', sans-serif;
+
+    .container-fluid {
+        justify-content: center;
+    }
+
+    .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .navbar-nav {
+        text-align: center;
+
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: white !important;
+
+            &:hover {
+                // Função de cor para suavizar o hover
+                color: lighten($secondary, 40%) !important;
+            }
+        }
+    }
+}
+
+// Hero
+.hero {
+    background: linear-gradient(180deg, #111, #2a2a2a);
+    color: #fff;
+    min-height: 50vh;
+    text-align: center;
+    padding: 4rem 1rem;
+
+    &__eyebrow {
+        font-size: .85rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: $secondary;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    &__title {
+        font-size: clamp(2.2rem, 6vw, 4.5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+
+        span {
+            color: $secondary;
+        }
+    }
+
+    &__subtitle {
+        font-size: 1.15rem;
+        opacity: .85;
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.7;
+    }
+
+    &__cta-group {
+        @include flex-center; // Uso do Mixin
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}
+
+// Seções Genéricas usando Extend
+.section-sobre {
+    @extend %container-estilizado;
+    padding: 60px 20px;
+    margin: 40px auto;
+    text-align: justify;
+
+    &__badge {
+        color: $secondary;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    img {
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: $radius-padrao;
+    }
+}
+
+//Card
+.section-cards {
+    @extend %container-estilizado;
+    padding: 60px 0;
+    margin: 30px auto;
+
+    .row {
+        justify-content: center;
+    }
+}
+
+.service-card__icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2.4rem;
+    @include flex-center; // Uso do Mixin
+    margin: 0 auto 15px;
+}
+
+.card {
+    background-color: #ffffff;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    transition: transform .25s, box-shadow .25s;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, .4);
+    }
+}
+
+// Formulário
+.formulario {
+    @extend %container-estilizado;
+    padding: 25px;
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto;
+
+    h2 {
+        text-align: center;
+    }
+}
+
+// Botões Customizados
+.btn-primary-custom {
+    background: $secondary;
+    color: #fff;
+    border: none;
+    border-radius: $border-radius;
+    padding: .75rem 2rem;
+    font-weight: 500;
+    letter-spacing: .3px;
+    transition: background .2s, transform .15s;
+
+    &:hover {
+        // Função de cor Darken para o estado hover
+        background: darken($secondary, 10%);
+        transform: translateY(-2px);
+        color: #fff;
+    }
+}
+
+// Rodapé
+.footer {
+    background: darken($primary, 4%);
+    color: rgba(255, 255, 255, .6);
+    padding: 2.5rem 0;
+    font-size: .9rem;
+
+    &__brand {
+        color: $secondary;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    a {
+        color: rgba(255, 255, 255, .6);
+        transition: color .2s;
+        padding: 10px;
+
+        &:hover {
+            color: $secondary;
+        }
+    }
+}
